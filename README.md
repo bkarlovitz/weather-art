@@ -1,0 +1,1 @@
+This repository holds a collection of ascii art weather scenes.
