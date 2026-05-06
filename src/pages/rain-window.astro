@@ -1,0 +1,48 @@
+---
+import Layout from '../layouts/Layout.astro';
+import WeatherScene from '../components/WeatherScene.astro';
+---
+
+<Layout title="rain on window — weather art">
+  <a class="back" href="/">← back</a>
+  <WeatherScene scene="rain-window" intensity={0.55} />
+</Layout>
+
+<style is:global>
+  :root {
+    --scene-fg: #93afc8;
+    --scene-bg: linear-gradient(
+      to bottom,
+      #2b465f 0%,
+      #213a52 35%,
+      #182d42 75%,
+      #122336 100%
+    );
+  }
+  #weather-scene .c1 {
+    color: #506c84;
+  }
+  #weather-scene .c2 {
+    color: #e6f0f7;
+    text-shadow: 0 0 5px rgba(220, 235, 245, 0.55);
+  }
+</style>
+
+<style>
+  .back {
+    position: fixed;
+    top: 1rem;
+    left: 1rem;
+    z-index: 10;
+    color: var(--accent);
+    background: rgba(10, 14, 20, 0.7);
+    padding: 0.3rem 0.6rem;
+    border-radius: 4px;
+    text-decoration: none;
+    font-size: 0.85rem;
+    backdrop-filter: blur(4px);
+  }
+  .back:hover {
+    background: rgba(10, 14, 20, 0.9);
+  }
+</style>

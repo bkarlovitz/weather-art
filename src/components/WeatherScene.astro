@@ -1,0 +1,46 @@
+---
+interface Props {
+  scene: string;
+  intensity?: number;
+  wind?: number;
+}
+const { scene, intensity = 0.5, wind = 0 } = Astro.props;
+---
+
+<pre
+  id="weather-scene"
+  data-scene={scene}
+  data-intensity={intensity}
+  data-wind={wind}
+></pre>
+
+<script>
+  import { mountScene } from '../scenes/core/mount';
+  import type { SceneName } from '../scenes';
+
+  const el = document.getElementById('weather-scene') as HTMLPreElement | null;
+  if (el) {
+    const name = el.dataset.scene as SceneName;
+    const intensity = Number(el.dataset.intensity ?? 0.5);
+    const wind = Number(el.dataset.wind ?? 0);
+
+    const cleanup = mountScene(el, name, { intensity, wind });
+
+    document.addEventListener('astro:before-swap', cleanup, { once: true });
+    window.addEventListener('beforeunload', cleanup, { once: true });
+  }
+</script>
+
+<style>
+  #weather-scene {
+    margin: 0;
+    width: 100vw;
+    height: 100vh;
+    font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+    line-height: 1;
+    overflow: hidden;
+    white-space: pre;
+    color: var(--scene-fg, #b3c7d6);
+    background: var(--scene-bg, #0a0e14);
+  }
+</style>

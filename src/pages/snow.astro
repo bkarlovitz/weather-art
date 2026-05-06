@@ -1,0 +1,48 @@
+---
+import Layout from '../layouts/Layout.astro';
+import WeatherScene from '../components/WeatherScene.astro';
+---
+
+<Layout title="snow — weather art">
+  <a class="back" href="/">← back</a>
+  <WeatherScene scene="snow" intensity={0.55} />
+</Layout>
+
+<style is:global>
+  :root {
+    --scene-fg: #c8cdd9;
+    --scene-bg: linear-gradient(
+      to bottom,
+      #2a2843 0%,
+      #1d1c30 35%,
+      #13121f 75%,
+      #0a0915 100%
+    );
+  }
+  #weather-scene .c1 {
+    color: #686b85;
+  }
+  #weather-scene .c2 {
+    color: #ffffff;
+    text-shadow: 0 0 4px rgba(255, 255, 255, 0.45);
+  }
+</style>
+
+<style>
+  .back {
+    position: fixed;
+    top: 1rem;
+    left: 1rem;
+    z-index: 10;
+    color: var(--accent);
+    background: rgba(10, 14, 20, 0.7);
+    padding: 0.3rem 0.6rem;
+    border-radius: 4px;
+    text-decoration: none;
+    font-size: 0.85rem;
+    backdrop-filter: blur(4px);
+  }
+  .back:hover {
+    background: rgba(10, 14, 20, 0.9);
+  }
+</style>

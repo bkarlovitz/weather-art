@@ -1,0 +1,51 @@
+---
+import Layout from '../layouts/Layout.astro';
+import WeatherScene from '../components/WeatherScene.astro';
+---
+
+<Layout title="windy — weather art">
+  <a class="back" href="/">← back</a>
+  <WeatherScene scene="windy" intensity={0.5} wind={1.0} />
+</Layout>
+
+<style is:global>
+  :root {
+    --scene-fg: #a8b0b8;
+    --scene-bg: linear-gradient(
+      to bottom,
+      #6e7882 0%,
+      #7e8893 40%,
+      #909aa3 80%,
+      #9ba4ad 100%
+    );
+  }
+  #weather-scene .c1 {
+    color: #545d66;
+  }
+  #weather-scene .c2 {
+    color: #e8edf2;
+    text-shadow: 0 0 2px rgba(255, 255, 255, 0.4);
+  }
+  #weather-scene .c3 {
+    color: #c89858;
+  }
+</style>
+
+<style>
+  .back {
+    position: fixed;
+    top: 1rem;
+    left: 1rem;
+    z-index: 10;
+    color: var(--accent);
+    background: rgba(10, 14, 20, 0.7);
+    padding: 0.3rem 0.6rem;
+    border-radius: 4px;
+    text-decoration: none;
+    font-size: 0.85rem;
+    backdrop-filter: blur(4px);
+  }
+  .back:hover {
+    background: rgba(10, 14, 20, 0.9);
+  }
+</style>

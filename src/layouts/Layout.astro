@@ -1,0 +1,38 @@
+---
+interface Props {
+  title: string;
+}
+const { title } = Astro.props;
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>{title}</title>
+    <style is:global>
+      :root {
+        color-scheme: dark;
+        --bg: #0a0e14;
+        --fg: #c9d1d9;
+        --muted: #6b7785;
+        --accent: #79c0ff;
+      }
+      html,
+      body {
+        margin: 0;
+        padding: 0;
+        background: var(--bg);
+        color: var(--fg);
+        font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+      }
+      a {
+        color: var(--accent);
+      }
+    </style>
+  </head>
+  <body>
+    <slot />
+  </body>
+</html>

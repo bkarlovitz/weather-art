@@ -1,0 +1,112 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+const sceneList: Array<{ name: string; href: string; status: 'ready' | 'todo'; desc: string }> = [
+  { name: 'rain', href: '/rain', status: 'ready', desc: 'falling drops, depth-mapped speed' },
+  { name: 'rain-window', href: '/rain-window', status: 'ready', desc: 'drops on glass, sliding trails' },
+  { name: 'snow', href: '/snow', status: 'ready', desc: 'drifting flakes, ground accumulation' },
+  { name: 'clouds', href: '/clouds', status: 'ready', desc: 'noise-field overcast, two-octave parallax' },
+  { name: 'sunny', href: '/sunny', status: 'ready', desc: 'landscape with sun, hills, and grass field' },
+  { name: 'storm', href: '/storm', status: 'ready', desc: 'rain + clouds + lightning, gusty wind' },
+  { name: 'fog', href: '/fog', status: 'ready', desc: 'low-frequency drift, denser near ground' },
+  { name: 'clear-night', href: '/clear-night', status: 'ready', desc: 'twinkling stars, crescent moon, occasional shooting star' },
+  { name: 'clear-day', href: '/clear-day', status: 'ready', desc: 'bright sky with sparse cirrus wisps' },
+  { name: 'windy', href: '/windy', status: 'ready', desc: 'fast-scrolling clouds with debris' },
+  { name: 'hail', href: '/hail', status: 'ready', desc: 'falling stones that bounce on impact' },
+];
+---
+
+<Layout title="weather art">
+  <main>
+    <header>
+      <h1>weather art</h1>
+      <p class="sub">ascii weather scenes — click one to view</p>
+    </header>
+
+    <ul class="scenes">
+      {
+        sceneList.map((s) => (
+          <li class={`scene scene--${s.status}`}>
+            {s.status === 'ready' ? (
+              <a href={s.href}>
+                <span class="name">{s.name}</span>
+                <span class="desc">{s.desc}</span>
+              </a>
+            ) : (
+              <span class="disabled">
+                <span class="name">{s.name}</span>
+                <span class="desc">{s.desc}</span>
+                <span class="tag">todo</span>
+              </span>
+            )}
+          </li>
+        ))
+      }
+    </ul>
+  </main>
+</Layout>
+
+<style>
+  main {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 4rem 2rem;
+  }
+  header {
+    margin-bottom: 3rem;
+  }
+  h1 {
+    margin: 0;
+    font-size: 2rem;
+    font-weight: 500;
+    letter-spacing: -0.02em;
+  }
+  .sub {
+    margin: 0.5rem 0 0;
+    color: var(--muted);
+  }
+  .scenes {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: grid;
+    gap: 0.25rem;
+  }
+  .scene a,
+  .scene .disabled {
+    display: grid;
+    grid-template-columns: 8rem 1fr auto;
+    gap: 1rem;
+    align-items: baseline;
+    padding: 0.65rem 0.75rem;
+    border-radius: 4px;
+    text-decoration: none;
+    color: var(--fg);
+    border: 1px solid transparent;
+  }
+  .scene a:hover {
+    background: rgba(121, 192, 255, 0.08);
+    border-color: rgba(121, 192, 255, 0.25);
+  }
+  .scene--todo .disabled {
+    color: var(--muted);
+    cursor: not-allowed;
+  }
+  .name {
+    font-weight: 500;
+  }
+  .scene a .name {
+    color: var(--accent);
+  }
+  .desc {
+    color: var(--muted);
+    font-size: 0.9rem;
+  }
+  .tag {
+    font-size: 0.75rem;
+    color: var(--muted);
+    border: 1px solid var(--muted);
+    border-radius: 3px;
+    padding: 0 0.4rem;
+  }
+</style>

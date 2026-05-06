@@ -1,0 +1,48 @@
+---
+import Layout from '../layouts/Layout.astro';
+import WeatherScene from '../components/WeatherScene.astro';
+---
+
+<Layout title="clouds — weather art">
+  <a class="back" href="/">← back</a>
+  <WeatherScene scene="clouds" intensity={0.5} wind={0.3} />
+</Layout>
+
+<style is:global>
+  :root {
+    --scene-fg: #eef3f8;
+    --scene-bg: linear-gradient(
+      to bottom,
+      #6ea4c4 0%,
+      #8cbcd6 40%,
+      #a8cce0 80%,
+      #b6d4e4 100%
+    );
+  }
+  #weather-scene .c1 {
+    color: #c8d6e2;
+  }
+  #weather-scene .c2 {
+    color: #ffffff;
+    text-shadow: 0 0 3px rgba(255, 255, 255, 0.55);
+  }
+</style>
+
+<style>
+  .back {
+    position: fixed;
+    top: 1rem;
+    left: 1rem;
+    z-index: 10;
+    color: #ffffff;
+    background: rgba(20, 40, 60, 0.55);
+    padding: 0.3rem 0.6rem;
+    border-radius: 4px;
+    text-decoration: none;
+    font-size: 0.85rem;
+    backdrop-filter: blur(4px);
+  }
+  .back:hover {
+    background: rgba(20, 40, 60, 0.8);
+  }
+</style>
